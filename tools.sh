@@ -9,7 +9,7 @@ RED='\033[0;31m'
 tools=("ffuf" "subfinder" "httpx" "dalfox" "gospider" "uro" "secretfinder" "seclists" "linkfinder" "xsstrike" "403-bypass" "anew" "x8" "arjun" "sqlmap" "ghauri")
 
 apt update
-mkdir testing && cd testing/
+mkdir ~/testing && cd ~/testing/
 
 for tool in "${tools[@]}"; do
 
