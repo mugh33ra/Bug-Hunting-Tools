@@ -6,10 +6,10 @@ GREEN='\033[0;32m'
 YELLOW='\033[0;33m'
 RED='\033[0;31m'
 
-tools=("ffuf" "subfinder" "httpx" "dalfox" "gospider" "uro" "secretfinder" "seclists" "linkfinder" "xsstrike" "403-bypass" "anew" "x8" "arjun" "sqlmap" "ghauri")
+tools=("ffuf" "subfinder" "httpx" "dalfox" "gospider" "uro" "secretfinder" "seclists" "linkfinder" "xsstrike" "403-bypass" "anew" "x8" "arjun" "sqlmap" "ghauri" "gau")
 
 apt update
-mkdir ~/testing && cd ~/testing/
+mkdir ~/tools && cd ~/tools/
 
 for tool in "${tools[@]}"; do
 
@@ -53,6 +53,7 @@ for tool in "${tools[@]}"; do
 				snap install seclists
                 ;;
             linkfinder)
+				echo -e "${GREEN}${BOLD}[>] installing linkfinder...⏳"
                 git clone https://github.com/GerbenJavado/LinkFinder.git && cd LinkFinder && pip3 install -r requirements.txt \
                 && chmod +x linkfinder.py && cp /root/testing/LinkFinder/linkfinder.py /usr/bin/linkfinder && cd ..
                 ;;
@@ -64,7 +65,7 @@ for tool in "${tools[@]}"; do
 				echo -e "${YELLOW}${BOLD}[>] installing 4-Zero-3 Bypass...⏳"
 				git clone https://github.com/Dheerajmadhukar/4-ZERO-3.git && cd 4-ZERO-3 && chmod +x * && cp 403-bypass.sh /usr/bin/403-bypass && cd ..
 				;;
-			anew)
+  			anew)
 				echo -e "${YELLOW}${BOLD}[>] installing anew...⏳"
 				go install -v github.com/tomnomnom/anew@latest && cp /root/go/bin/anew /usr/bin
 				;;
@@ -84,6 +85,15 @@ for tool in "${tools[@]}"; do
 				echo -e "${YELLOW}${BOLD}[>] installing ghauri...⏳"
 				git clone https://github.com/r0oth3x49/ghauri.git && \
 				cd ghauri/ && pip3 install -r requirements.txt && python3 setup.py install && cd ..
+				;;
+			gau)
+				echo -e "${GREEN}${BOLD}[>] installing gau...⏳"
+				go install github.com/lc/gau/v2/cmd/gau@latest && cp ~/go/bin/gau /usr/bin
+				;;
+			subprober)
+				echo -e "${GREEN}${BOLD}[>] installing subprober...⏳"
+				pip install git+https://github.com/RevoltSecurities/Subprober.git
+				pip3 install httpx
 				;;
 
             *)
