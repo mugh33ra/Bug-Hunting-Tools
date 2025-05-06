@@ -6,10 +6,13 @@ GREEN='\033[0;32m'
 YELLOW='\033[0;33m'
 RED='\033[0;31m'
 
-tools=("ffuf" "subfinder" "httpx" "dalfox" "gospider" "uro" "secretfinder" "seclists" "linkfinder" "xsstrike" "403-bypass" "anew" "x8" "arjun" "sqlmap" "ghauri" "gau")
+tools=("ffuf" "subfinder" "httpx" "dalfox" "gospider" "uro" "secretfinder" "seclists" "linkfinder" "xsstrike" "403-bypass" "anew" "x8" "arjun" "sqlmap" "ghauri" "gau" "subprober")
 
 apt update
-mkdir ~/tools && cd ~/tools/
+
+if [[ ! -d "tools" ]]; then
+	mkdir ~/tools && cd ~/tools/
+fi
 
 for tool in "${tools[@]}"; do
 
@@ -50,9 +53,9 @@ for tool in "${tools[@]}"; do
             secretfinder)
         		echo -e "${YELLOW}${BOLD}[>] installing secretfinder...⏳"
 				git clone https://github.com/m4ll0k/SecretFinder.git
-				pip3 install -r /root/testing/SecretFinder/requirements.txt
-				chmod +x /root/testing/SecretFinder/SecretFinder.py
-				cp /root/testing/SecretFinder/SecretFinder.py /usr/bin/secretfinder
+				pip3 install -r /root/tools/SecretFinder/requirements.txt
+				chmod +x /root/tools/SecretFinder/SecretFinder.py
+				cp /root/tools/SecretFinder/SecretFinder.py /usr/bin/secretfinder
                 ;;
             seclists)
         		echo -e "${GREEN}${BOLD}[>] installing seclists...⏳"
@@ -63,7 +66,7 @@ for tool in "${tools[@]}"; do
                 git clone https://github.com/GerbenJavado/LinkFinder.git
                 cd LinkFinder && pip3 install -r requirements.txt
                 chmod +x linkfinder.py
-                cp /root/testing/LinkFinder/linkfinder.py /usr/bin/linkfinder
+                cp /root/tools/LinkFinder/linkfinder.py /usr/bin/linkfinder
                 cd ..
                 ;;
             xsstrike)
