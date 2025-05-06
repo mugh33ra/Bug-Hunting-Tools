@@ -6,7 +6,7 @@ GREEN='\033[0;32m'
 YELLOW='\033[0;33m'
 RED='\033[0;31m'
 
-tools=("ffuf" "subfinder" "httpx" "dalfox" "gospider" "uro" "secretfinder" "seclists" "linkfinder" "xsstrike" "403-bypass" "anew" "x8" "arjun" "sqlmap" "ghauri" "gau" "subprober")
+tools=("ffuf" "subfinder" "httpx" "dalfox" "gospider" "uro" "secretfinder" "seclists" "linkfinder" "xsstrike" "403-bypass" "anew" "x8" "arjun" "sqlmap" "ghauri" "gau" "subprober" "katana")
 
 apt update
 
@@ -121,6 +121,11 @@ for tool in "${tools[@]}"; do
 				echo -e "${GREEN}${BOLD}[>] installing subprober...⏳"
 				pip install git+https://github.com/RevoltSecurities/Subprober.git
 				pip3 install httpx
+				;;
+    			subprober)
+				echo -e "${GREEN}${BOLD}[>] installing katana...⏳"
+				go install github.com/projectdiscovery/katana/cmd/katana@latest
+				cp /root/go/bin/katana /usr/bin/katana
 				;;
 
             *)
