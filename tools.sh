@@ -25,19 +25,23 @@ for tool in "${tools[@]}"; do
                 ;;
             subfinder)
         		echo -e "${YELLOW}${BOLD}[>] installing subfinder...⏳"
-				go install -v github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest && cp /root/go/bin/subfinder /usr/bin
+				go install -v github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest &
+				cp /root/go/bin/subfinder /usr/bin
                 ;;
             httpx)
         		echo -e "${GREEN}${BOLD}[>] installing httpx...⏳"
-				go install -v github.com/projectdiscovery/httpx/cmd/httpx@latest && cp /root/go/bin/httpx /usr/bin
+				go install -v github.com/projectdiscovery/httpx/cmd/httpx@latest &
+				cp /root/go/bin/httpx /usr/bin
                 ;;
             dalfox)
             	echo -e "${YELLOW}${BOLD}[>] installing dalfox...⏳"
-				go install github.com/hahwul/dalfox/v2@latest && cp /root/go/bin/dalfox /usr/bin
+				go install github.com/hahwul/dalfox/v2@latest &
+				cp /root/go/bin/dalfox /usr/bin
                 ;;
             gospider)
         		echo -e "${GREEN}${BOLD}[>] installing gospider...⏳"
-				go install github.com/jaeles-project/gospider@latest && cp /root/go/bin/gospider /usr/bin
+				go install github.com/jaeles-project/gospider@latest &
+				cp /root/go/bin/gospider /usr/bin
                 ;;
             uro)
             	echo -e "${GREEN}${BOLD}[>] installing uro...⏳"
@@ -45,8 +49,10 @@ for tool in "${tools[@]}"; do
                 ;;
             secretfinder)
         		echo -e "${YELLOW}${BOLD}[>] installing secretfinder...⏳"
-				git clone https://github.com/m4ll0k/SecretFinder.git && pip3 install -r /root/testing/SecretFinder/requirements.txt && chmod +x /root/testing/SecretFinder/SecretFinder.py \
-				&& cp /root/testing/SecretFinder/SecretFinder.py /usr/bin/secretfinder
+				git clone https://github.com/m4ll0k/SecretFinder.git &
+				pip3 install -r /root/testing/SecretFinder/requirements.txt &
+				chmod +x /root/testing/SecretFinder/SecretFinder.py
+				cp /root/testing/SecretFinder/SecretFinder.py /usr/bin/secretfinder
                 ;;
             seclists)
         		echo -e "${GREEN}${BOLD}[>] installing seclists...⏳"
@@ -54,8 +60,11 @@ for tool in "${tools[@]}"; do
                 ;;
             linkfinder)
 				echo -e "${GREEN}${BOLD}[>] installing linkfinder...⏳"
-                git clone https://github.com/GerbenJavado/LinkFinder.git && cd LinkFinder && pip3 install -r requirements.txt \
-                && chmod +x linkfinder.py && cp /root/testing/LinkFinder/linkfinder.py /usr/bin/linkfinder && cd ..
+                git clone https://github.com/GerbenJavado/LinkFinder.git &
+                cd LinkFinder && pip3 install -r requirements.txt &
+                chmod +x linkfinder.py
+                cp /root/testing/LinkFinder/linkfinder.py /usr/bin/linkfinder
+                cd ..
                 ;;
             xsstrike)
                 echo -e "${YELLOW}${BOLD}[>] installing XSStrike...⏳"
@@ -63,15 +72,26 @@ for tool in "${tools[@]}"; do
                 ;;
             403-bypass)
 				echo -e "${YELLOW}${BOLD}[>] installing 4-Zero-3 Bypass...⏳"
-				git clone https://github.com/Dheerajmadhukar/4-ZERO-3.git && cd 4-ZERO-3 && chmod +x * && cp 403-bypass.sh /usr/bin/403-bypass && cd ..
+				git clone https://github.com/Dheerajmadhukar/4-ZERO-3.git &
+				cd 4-ZERO-3
+				chmod +x *
+				cp 403-bypass.sh /usr/bin/403-bypass
+				cd ..
 				;;
   			anew)
 				echo -e "${YELLOW}${BOLD}[>] installing anew...⏳"
-				go install -v github.com/tomnomnom/anew@latest && cp /root/go/bin/anew /usr/bin
+				go install -v github.com/tomnomnom/anew@latest &
+				cp /root/go/bin/anew /usr/bin
 				;;
 			x8)
 				echo -e "${YELLOW}${BOLD}[>] installing x8...⏳"
-				git clone https://github.com/sh1yo/x8.git && cd x8/ && apt install cargo && rustup default stable && cargo build --release && cp ./target/release/x8 /usr/local/bin && cd ..
+				git clone https://github.com/sh1yo/x8.git &
+				cd x8/
+				apt install cargo &
+				rustup default stable &
+				cargo build --release &
+				cp ./target/release/x8 /usr/local/bin &
+				cd ..
 				;;			
 			arjun)
 				echo -e "${YELLOW}${BOLD}[>] installing arjun...⏳"
@@ -83,16 +103,20 @@ for tool in "${tools[@]}"; do
 				;;			
 			ghauri)
 				echo -e "${YELLOW}${BOLD}[>] installing ghauri...⏳"
-				git clone https://github.com/r0oth3x49/ghauri.git && \
-				cd ghauri/ && pip3 install -r requirements.txt && python3 setup.py install && cd ..
+				git clone https://github.com/r0oth3x49/ghauri.git &
+				cd ghauri/ &
+				pip3 install -r requirements.txt &
+				python3 setup.py install &
+				cd ..
 				;;
 			gau)
 				echo -e "${GREEN}${BOLD}[>] installing gau...⏳"
-				go install github.com/lc/gau/v2/cmd/gau@latest && cp ~/go/bin/gau /usr/bin
+				go install github.com/lc/gau/v2/cmd/gau@latest &
+				cp ~/go/bin/gau /usr/bin
 				;;
 			subprober)
 				echo -e "${GREEN}${BOLD}[>] installing subprober...⏳"
-				pip install git+https://github.com/RevoltSecurities/Subprober.git
+				pip install git+https://github.com/RevoltSecurities/Subprober.git &
 				pip3 install httpx
 				;;
 
