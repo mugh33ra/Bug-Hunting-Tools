@@ -34,7 +34,7 @@ for tool in "${tools[@]}"; do
             httpx)
         		echo -e "${GREEN}${BOLD}[>] installing httpx...⏳"
 				go install -v github.com/projectdiscovery/httpx/cmd/httpx@latest
-				cp /root/go/bin/httpx /usr/bin
+				cp /root/go/bin/httpx /usr/bin/httpx-toolkit
                 ;;
             dalfox)
             	echo -e "${YELLOW}${BOLD}[>] installing dalfox...⏳"
