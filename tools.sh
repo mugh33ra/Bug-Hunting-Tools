@@ -6,10 +6,11 @@ GREEN='\033[0;32m'
 YELLOW='\033[0;33m'
 RED='\033[0;31m'
 
-tools=("ffuf" "subfinder" "httpx" "dalfox" "gospider" "uro" "secretfinder" "seclists" "linkfinder" "xsstrike" "403-bypass" "anew" "x8" "arjun" "sqlmap" "ghauri" "gau" "subprober" "katana")
+tools=("ffuf" "subfinder" "httpx" "go" "dalfox" "gospider" "uro" "nuclei" "secretfinder" "seclists" "linkfinder" "xsstrike" "403-bypass" "anew" "x8" "arjun" "sqlmap" "ghauri" "gau" "subprober")
 
 apt update
 
+cd "/opt"
 if [[ ! -d "tools" ]]; then
 	mkdir ~/tools && cd ~/tools/
 fi
@@ -26,6 +27,10 @@ for tool in "${tools[@]}"; do
 				echo -e "${YELLOW}${BOLD}[>] installing ffuf...⏳"
                 apt install ffuf
                 ;;
+                go)
+				echo -e "${YELLOW}${BOLD}[>] installing go...⏳"
+                apt install golang-go -y
+                ;;
             subfinder)
         		echo -e "${YELLOW}${BOLD}[>] installing subfinder...⏳"
 				go install -v github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest
@@ -34,12 +39,17 @@ for tool in "${tools[@]}"; do
             httpx)
         		echo -e "${GREEN}${BOLD}[>] installing httpx...⏳"
 				go install -v github.com/projectdiscovery/httpx/cmd/httpx@latest
-				cp /root/go/bin/httpx /usr/bin/httpx-toolkit
+				cp /root/go/bin/httpx /usr/bin
                 ;;
             dalfox)
             	echo -e "${YELLOW}${BOLD}[>] installing dalfox...⏳"
 				go install github.com/hahwul/dalfox/v2@latest
 				cp /root/go/bin/dalfox /usr/bin
+                ;;
+            nuclei)
+            	echo -e "${YELLOW}${BOLD}[>] installing nuclei...⏳"
+				go install github.com/projectdiscovery/nuclei/v3/cmd/nuclei@latest
+				cp /root/go/bin/nuclei /usr/bin
                 ;;
             gospider)
         		echo -e "${GREEN}${BOLD}[>] installing gospider...⏳"
@@ -48,7 +58,7 @@ for tool in "${tools[@]}"; do
                 ;;
             uro)
             	echo -e "${GREEN}${BOLD}[>] installing uro...⏳"
-				pip3 install uro
+				pip3 install uro  --break-system-packages
                 ;;
             secretfinder)
         		echo -e "${YELLOW}${BOLD}[>] installing secretfinder...⏳"
@@ -59,7 +69,7 @@ for tool in "${tools[@]}"; do
                 ;;
             seclists)
         		echo -e "${GREEN}${BOLD}[>] installing seclists...⏳"
-				snap install seclists
+				snap install seclists || apt install seclists
                 ;;
             linkfinder)
 				echo -e "${GREEN}${BOLD}[>] installing linkfinder...⏳"
@@ -71,7 +81,7 @@ for tool in "${tools[@]}"; do
                 ;;
             xsstrike)
                 echo -e "${YELLOW}${BOLD}[>] installing XSStrike...⏳"
-				pip3 install xsstrike
+				pip3 install xsstrike  --break-system-packages
                 ;;
             403-bypass)
 				echo -e "${YELLOW}${BOLD}[>] installing 4-Zero-3 Bypass...⏳"
@@ -98,11 +108,11 @@ for tool in "${tools[@]}"; do
 				;;			
 			arjun)
 				echo -e "${YELLOW}${BOLD}[>] installing arjun...⏳"
-				pip3 install arjun
+				pip3 install arjun  --break-system-packages
 				;;				
 			sqlmap)
 				echo -e "${YELLOW}${BOLD}[>] installing sqlmap...⏳"
-				pip3 install sqlmap
+				pip3 install sqlmap  --break-system-packages
 				;;			
 			ghauri)
 				echo -e "${YELLOW}${BOLD}[>] installing ghauri...⏳"
@@ -121,11 +131,6 @@ for tool in "${tools[@]}"; do
 				echo -e "${GREEN}${BOLD}[>] installing subprober...⏳"
 				pip install git+https://github.com/RevoltSecurities/Subprober.git
 				pip3 install httpx
-				;;
-    			subprober)
-				echo -e "${GREEN}${BOLD}[>] installing katana...⏳"
-				go install github.com/projectdiscovery/katana/cmd/katana@latest
-				cp /root/go/bin/katana /usr/bin/katana
 				;;
 
             *)
