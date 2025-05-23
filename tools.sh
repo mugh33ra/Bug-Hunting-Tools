@@ -71,7 +71,7 @@ for tool in "${tools[@]}"; do
         		echo -e "${YELLOW}${BOLD}[>] installing secretfinder...⏳"
 				git clone https://github.com/m4ll0k/SecretFinder.git
 				pip3 install -r SecretFinder/requirements.txt
-				chmod +x /SecretFinder/SecretFinder.py
+				chmod +x SecretFinder/SecretFinder.py
 				cp SecretFinder/SecretFinder.py /usr/bin/secretfinder
                 ;;
             seclists)
