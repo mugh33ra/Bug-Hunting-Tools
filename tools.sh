@@ -41,7 +41,7 @@ update() {
 }
 update
 
-tools=("go" "ffuf" "dirsearch" "subfinder" "httpx" "dalfox" "gospider" "uro" "nuclei" "secretfinder" "seclists" "linkfinder" "xsstrike" "403-bypass" "anew" "x8" "arjun" "sqlmap" "ghauri" "gau" "subprober")
+tools=("go" "ffuf" "dirsearch" "subfinder" "httpx" "dalfox" "gospider" "uro" "nuclei" "secretfinder" "seclists" "linkfinder" "xsstrike" "403-bypass" "anew" "x8" "arjun" "sqlmap" "ghauri" "gau" "subprober" "freq")
 
 #clear the terminal
 clear
@@ -173,6 +173,10 @@ for tool in "${tools[@]}"; do
 				echo -e "${GREEN}${BOLD}[>] installing subprober...⏳"
 				pip install git+https://github.com/RevoltSecurities/Subprober.git
 				pip3 install httpx
+				;;
+			freq)
+				echo -e "${GREEN}${BOLD}[>] installing freq...⏳"
+				go install github.com/takshal/freq@latest
 				;;
 
             *)
