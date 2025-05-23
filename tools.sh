@@ -6,6 +6,23 @@ GREEN='\033[0;32m'
 YELLOW='\033[0;33m'
 RED='\033[0;31m'
 
+update() {
+
+	echo -e "$YELLOW $BOLD [+] Would You want to update the tool(y/n)"
+	read choice_update
+
+	if [[ $choice_update == "y" ]]; then
+		echo -e "$GREEN $BOLD [+] Updating......"
+		wget "https://raw.githubusercontent.com/mugh33ra/Bug-Hunting-Tools/refs/heads/main/tools.sh" -o update_tool.sh &
+		cat update_tool.sh > tools.sh && echo -e "$YELLOW $BOLD [+] Script is Updated Successfully"
+
+	elif [[ $choice_update == "n" ]]; then
+		echo "Script is Running"
+	fi
+}
+
+update
+
 tools=("go" "ffuf" "dirsearch" "subfinder" "httpx" "dalfox" "gospider" "uro" "nuclei" "secretfinder" "seclists" "linkfinder" "xsstrike" "403-bypass" "anew" "x8" "arjun" "sqlmap" "ghauri" "gau" "subprober")
 
 #clear the terminal
@@ -15,7 +32,7 @@ apt update
 
 cd "/opt"
 if [[ ! -d "tools" ]]; then
-	mkdir ~/tools && cd ~/tools/
+	mkdir tools && cd tools/
 fi
 
 for tool in "${tools[@]}"; do
@@ -71,7 +88,7 @@ for tool in "${tools[@]}"; do
         		echo -e "${YELLOW}${BOLD}[>] installing secretfinder...⏳"
 				git clone https://github.com/m4ll0k/SecretFinder.git
 				pip3 install -r SecretFinder/requirements.txt
-				chmod +x SecretFinder/SecretFinder.py
+				chmod +x /SecretFinder/SecretFinder.py
 				cp SecretFinder/SecretFinder.py /usr/bin/secretfinder
                 ;;
             seclists)
