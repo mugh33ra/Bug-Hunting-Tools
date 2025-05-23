@@ -7,20 +7,38 @@ YELLOW='\033[0;33m'
 RED='\033[0;31m'
 
 update() {
+    echo -e "${YELLOW}${BOLD}[+] Do you want to update the tool? (y/n): "
+    read choice_update
 
-	echo -e "$YELLOW $BOLD [+] Would You want to update the tool(y/n)"
-	read choice_update
+    if [[ "$choice_update" == "y" ]]; then
+        echo -e "${GREEN}${BOLD}[+] Downloading the latest version..."
 
-	if [[ $choice_update == "y" ]]; then
-		echo -e "$GREEN $BOLD [+] Updating......"
-		wget "https://raw.githubusercontent.com/mugh33ra/Bug-Hunting-Tools/refs/heads/main/tools.sh" -o update_tool.sh &
-		cat update_tool.sh > tools.sh && echo -e "$YELLOW $BOLD [+] Script is Updated Successfully"
+        TMP_FILE=$(mktemp)
+        curl -s -L "https://raw.githubusercontent.com/mugh33ra/Bug-Hunting-Tools/main/tools.sh" -o "$TMP_FILE"
 
-	elif [[ $choice_update == "n" ]]; then
-		echo "Script is Running"
-	fi
+        if [ $? -ne 0 ]; then
+            echo -e "${RED}${BOLD}[!] Download failed."
+            return
+        fi
+
+        # 🔥 Get absolute path of this script file
+        SCRIPT_PATH="$(realpath "$0" 2>/dev/null || readlink -f "$0")"
+
+        echo -e "${GREEN}${BOLD}[+] Updating the script at $SCRIPT_PATH..."
+        cp "$TMP_FILE" "$SCRIPT_PATH"
+        chmod +x "$SCRIPT_PATH"
+        rm -f "$TMP_FILE"
+
+        echo -e "${YELLOW}${BOLD}[+] Script updated successfully. Restarting now..."
+        sleep 1
+
+        exec "$SCRIPT_PATH"  # 💥 Re-run using full path
+    elif [[ "$choice_update" == "n" ]]; then
+        echo -e "${YELLOW}${BOLD}[+] Starting without updating."
+    else
+        echo -e "${RED}${BOLD}[!] Invalid input. Please enter 'y' or 'n'."
+    fi
 }
-
 update
 
 tools=("go" "ffuf" "dirsearch" "subfinder" "httpx" "dalfox" "gospider" "uro" "nuclei" "secretfinder" "seclists" "linkfinder" "xsstrike" "403-bypass" "anew" "x8" "arjun" "sqlmap" "ghauri" "gau" "subprober")
@@ -88,12 +106,13 @@ for tool in "${tools[@]}"; do
         		echo -e "${YELLOW}${BOLD}[>] installing secretfinder...⏳"
 				git clone https://github.com/m4ll0k/SecretFinder.git
 				pip3 install -r SecretFinder/requirements.txt
-				chmod +x /SecretFinder/SecretFinder.py
+				chmod +x SecretFinder/SecretFinder.py
 				cp SecretFinder/SecretFinder.py /usr/bin/secretfinder
                 ;;
             seclists)
         		echo -e "${GREEN}${BOLD}[>] installing seclists...⏳"
-				snap install seclists || apt install seclists
+				wget -c https://github.com/danielmiessler/SecLists/archive/master.zip -O SecList.zip
+				unzip SecList.zip && rm -f SecList.zip
                 ;;
             linkfinder)
 				echo -e "${GREEN}${BOLD}[>] installing linkfinder...⏳"
@@ -168,3 +187,4 @@ done
 echo -e "${GREEN}${BOLD}[+] Configuring tools...."
 sleep 1
 echo -e "${YELLOW}${BOLD}[+] Done🎉"
+
