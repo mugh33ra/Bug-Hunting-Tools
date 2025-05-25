@@ -182,14 +182,14 @@ for tool in "${tools[@]}"; do
 
     else
         echo -e "${GREEN}${BOLD}[+] $tool is already installed."
-        echo -e "${GREEN}${BOLD}[+] Ensuring Pipx path"
-        pipx ensurepath
     fi
 done
 
 
 
 echo -e "${GREEN}${BOLD}[+] Configuring tools...."
+echo -e "${GREEN}${BOLD}[+] Ensuring Pipx path"
+pipx ensurepath
 sleep 1
 echo -e "${YELLOW}${BOLD}[+] Done🎉"
 
