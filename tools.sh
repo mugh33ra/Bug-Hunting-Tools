@@ -143,7 +143,9 @@ for tool in "${tools[@]}"; do
 				;;
 			x8)
 				echo -e "${YELLOW}${BOLD}[>] installing x8...⏳"
-				git clone https://github.com/sh1yo/x8.git
+				if [[ ! -d "x8" ]]; then
+					git clone https://github.com/sh1yo/x8.git					
+				fi
 				cd x8/
 				apt install cargo -y
 				rustup default stable
