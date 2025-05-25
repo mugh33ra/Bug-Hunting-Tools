@@ -41,7 +41,7 @@ update() {
 }
 update
 
-tools=("go" "ffuf" "dirsearch" "subfinder" "httpx" "dalfox" "gospider" "uro" "nuclei" "secretfinder" "seclists" "linkfinder" "xsstrike" "403-bypass" "anew" "x8" "arjun" "sqlmap" "ghauri" "gau" "subprober" "freq")
+tools=("go" "ffuf" "dirsearch" "subfinder" "httpx-toolkit" "dalfox" "gospider" "uro" "nuclei" "secretfinder" "seclists" "linkfinder" "xsstrike" "403-bypass" "anew" "x8" "arjun" "sqlmap" "ghauri" "gau" "subprober" "freq")
 
 #clear the terminal
 clear
@@ -75,13 +75,16 @@ for tool in "${tools[@]}"; do
                 ;;
             subfinder)
         		echo -e "${YELLOW}${BOLD}[>] installing subfinder...⏳"
-				go install github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest
-				cp $HOME/go/bin/subfinder /usr/bin
+				go install github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest && \
+				cp $HOME/go/bin/subfinder /usr/bin || \
+				echo -e "${RED}${BOLD}[>] Something Went Wrong installing manually...${BOLD}"
+				wget "https://github.com/projectdiscovery/subfinder/releases/download/v2.7.1/subfinder_2.7.1_linux_amd64.zip" -O subfinder.zip \
+				&& unzip subfinder.zip && chmod +x * && mv subfinder /usr/bin && rm subfinder.zip
                 ;;
-            httpx)
+            httpx-toolkit)
         		echo -e "${GREEN}${BOLD}[>] installing httpx...⏳"
-				go install github.com/projectdiscovery/httpx/cmd/httpx@latest
-				cp $HOME/go/bin/httpx /usr/bin
+				wget "https://github.com/projectdiscovery/httpx/releases/download/v1.7.0/httpx_1.7.0_linux_amd64.zip" -O httpx.zip
+				unzip httpx.zip && chmod +x * && mv httpx /usr/local/bin/httpx-toolkit && rm httpx.zip
                 ;;
             dalfox)
             	echo -e "${YELLOW}${BOLD}[>] installing dalfox...⏳"
@@ -105,7 +108,7 @@ for tool in "${tools[@]}"; do
             secretfinder)
         		echo -e "${YELLOW}${BOLD}[>] installing secretfinder...⏳"
 				git clone https://github.com/m4ll0k/SecretFinder.git
-				pip3 install -r SecretFinder/requirements.txt
+				pip3 install -r SecretFinder/requirements.txt --break-system-packages
 				chmod +x SecretFinder/SecretFinder.py
 				cp SecretFinder/SecretFinder.py /usr/bin/secretfinder
                 ;;
@@ -113,13 +116,13 @@ for tool in "${tools[@]}"; do
 				if [[ ! -d "SecLists-master" ]]; then
 					echo -e "${GREEN}${BOLD}[>] installing seclists...⏳"	
 					wget -c https://github.com/danielmiessler/SecLists/archive/master.zip -O SecList.zip
-					unzip SecList.zip && rm -f SecList.zip
+					unzip SecList.zip && rm -f SecList.zip && mv SecLists-master /usr/bin/seclists
 				fi
                 ;;
             linkfinder)
 				echo -e "${GREEN}${BOLD}[>] installing linkfinder...⏳"
                 git clone https://github.com/GerbenJavado/LinkFinder.git
-                pip3 install -r LinkFinder/requirements.txt
+                pip3 install -r LinkFinder/requirements.txt --break-system-packages
                 chmod +x LinkFinder/linkfinder.py
                 cp LinkFinder/linkfinder.py /usr/bin/linkfinder
                 ;;
