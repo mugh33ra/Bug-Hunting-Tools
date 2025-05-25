@@ -88,13 +88,12 @@ for tool in "${tools[@]}"; do
                 ;;
             dalfox)
             	echo -e "${YELLOW}${BOLD}[>] installing dalfox...⏳"
-				go install github.com/hahwul/dalfox/v2@latest
-				cp $HOME/go/bin/dalfox /usr/bin
+            	wget "https://github.com/hahwul/dalfox/releases/download/v2.11.0/dalfox_2.11.0_linux_amd64.tar.gz" -O dalfox.tar.gz && tar -xzf dalfox.tar.gz && chmod +x * && mv dalfox /usr/local/bin && rm dalfox.tar.gz
                 ;;
             nuclei)
             	echo -e "${YELLOW}${BOLD}[>] installing nuclei...⏳"
-				go install github.com/projectdiscovery/nuclei/v3/cmd/nuclei@latest
-				cp $HOME/go/bin/nuclei /usr/bin
+            	wget "https://github.com/projectdiscovery/nuclei/releases/download/v3.4.4/nuclei_3.4.4_linux_amd64.zip" -O "nuclei.zip"
+            	unzip nuclei.zip && rm *.md && chmod +x * && mv nuclei /usr/bin && rm nuclei.zip
                 ;;
             gospider)
         		echo -e "${GREEN}${BOLD}[>] installing gospider...⏳"
@@ -113,11 +112,8 @@ for tool in "${tools[@]}"; do
 				cp SecretFinder/SecretFinder.py /usr/bin/secretfinder
                 ;;
             seclists)
-				if [[ ! -d "SecLists-master" ]]; then
-					echo -e "${GREEN}${BOLD}[>] installing seclists...⏳"	
-					wget -c https://github.com/danielmiessler/SecLists/archive/master.zip -O SecList.zip
-					unzip SecList.zip && rm -f SecList.zip && mv SecLists-master /usr/bin/seclists
-				fi
+				echo -e "${GREEN}${BOLD}[>] installing seclists...⏳"	
+				apt-get install seclists || wget -c https://github.com/danielmiessler/SecLists/archive/master.zip -O SecList.zip && unzip SecList.zip && rm -f SecList.zip && mv SecLists-master /usr/bin/seclists
                 ;;
             linkfinder)
 				echo -e "${GREEN}${BOLD}[>] installing linkfinder...⏳"
@@ -172,7 +168,7 @@ for tool in "${tools[@]}"; do
 				;;
 			freq)
 				echo -e "${GREEN}${BOLD}[>] installing freq...⏳"
-				go install github.com/takshal/freq@latest || echo "[!] Install freq manually"
+				go install github.com/takshal/freq@latest && cp $HOME/go/bin/freq /usr/bin || echo "[!] Install freq manually"
 				;;
 
             *)
