@@ -168,12 +168,11 @@ for tool in "${tools[@]}"; do
 				;;
 			subprober)
 				echo -e "${GREEN}${BOLD}[>] installing subprober...⏳"
-				pip install git+https://github.com/RevoltSecurities/Subprober.git
-				pip3 install httpx
+				pipx install git+https://github.com/RevoltSecurities/Subprober.git
 				;;
 			freq)
 				echo -e "${GREEN}${BOLD}[>] installing freq...⏳"
-				go install github.com/takshal/freq@latest
+				go install github.com/takshal/freq@latest || echo "[!] Install freq manually"
 				;;
 
             *)
@@ -183,6 +182,8 @@ for tool in "${tools[@]}"; do
 
     else
         echo -e "${GREEN}${BOLD}[+] $tool is already installed."
+        echo -e "${GREEN}${BOLD}[+] Ensuring Pipx path"
+        pipx ensurepath
     fi
 done
 
