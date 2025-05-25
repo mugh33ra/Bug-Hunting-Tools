@@ -143,16 +143,9 @@ for tool in "${tools[@]}"; do
 				;;
 			x8)
 				echo -e "${YELLOW}${BOLD}[>] installing x8...⏳"
-				if [[ ! -d "x8" ]]; then
-					git clone https://github.com/sh1yo/x8.git					
-				fi
-				cd x8/
-				apt install cargo -y
-				rustup default stable
-				cargo build --release
-				cp ./target/release/x8 /usr/local/bin
-				cd ..
-				rm -rf x8/
+				wget "https://github.com/Sh1Yo/x8/releases/download/v4.3.0/x86_64-linux-x8.gz" -O "x8.gz"
+				gunzip "x8.gz" && rm "x8.gz" && chmod +x *
+				mv x8 /usr/bin
 				;;			
 			arjun)
 				echo -e "${YELLOW}${BOLD}[>] installing arjun...⏳"
