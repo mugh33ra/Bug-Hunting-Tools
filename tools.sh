@@ -58,7 +58,6 @@ for tool in "${tools[@]}"; do
 	if ! command -v $tool > /dev/null 2>&1; then
 		echo -e "${RED}${BOLD}[>] "$tool" is not installed..."
 		sleep 0.5
-		echo -e "${GREEN}${BOLD}[>] installing the $tool...⏳"
 
         case "$tool" in
                 go)
@@ -116,8 +115,12 @@ for tool in "${tools[@]}"; do
 				cp SecretFinder/SecretFinder.py /usr/bin/secretfinder
                 ;;
             seclists)
-				echo -e "${GREEN}${BOLD}[>] installing seclists...⏳"	
-				apt-get install seclists || wget -c https://github.com/danielmiessler/SecLists/archive/master.zip -O SecList.zip && unzip SecList.zip && rm -f SecList.zip && mv SecLists-master /usr/share/seclists
+				if [[ ! -d '/usr/share/seclists' ]]; then
+					echo -e "${GREEN}${BOLD}[>] installing seclists...⏳"
+					apt-get install seclists || wget -c https://github.com/danielmiessler/SecLists/archive/master.zip -O SecList.zip && unzip SecList.zip && rm -f SecList.zip && mv SecLists-master /usr/share/seclists
+				else
+					echo -e "${GREEN}${BOLD}[>] Seclists is Already Available in /usr/share/seclists"
+				fi
                 ;;
             linkfinder)
 				echo -e "${GREEN}${BOLD}[>] installing linkfinder...⏳"
