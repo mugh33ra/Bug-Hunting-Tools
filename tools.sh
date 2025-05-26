@@ -41,7 +41,7 @@ update() {
 }
 update
 
-tools=("go" "ffuf" "dirsearch" "subfinder" "httpx-toolkit" "dalfox" "gospider" "uro" "nuclei" "secretfinder" "seclists" "linkfinder" "xsstrike" "403-bypass" "anew" "x8" "arjun" "sqlmap" "ghauri" "gau" "subprober" "freq")
+tools=("go" "pipx" "ffuf" "dirsearch" "subfinder" "httpx-toolkit" "dalfox" "gospider" "uro" "nuclei" "secretfinder" "seclists" "linkfinder" "xsstrike" "403-bypass" "anew" "x8" "arjun" "sqlmap" "ghauri" "gau" "subprober" "freq")
 
 #clear the terminal
 clear
@@ -64,6 +64,10 @@ for tool in "${tools[@]}"; do
                 go)
 				echo -e "${YELLOW}${BOLD}[>] installing go...⏳"
                 apt install golang-go -y
+                ;;
+                pipx)
+				echo -e "${YELLOW}${BOLD}[>] installing pipx...⏳"
+                apt install pipx -y
                 ;;
             ffuf)
 				echo -e "${YELLOW}${BOLD}[>] installing ffuf...⏳"
@@ -113,7 +117,7 @@ for tool in "${tools[@]}"; do
                 ;;
             seclists)
 				echo -e "${GREEN}${BOLD}[>] installing seclists...⏳"	
-				apt-get install seclists || wget -c https://github.com/danielmiessler/SecLists/archive/master.zip -O SecList.zip && unzip SecList.zip && rm -f SecList.zip && mv SecLists-master /usr/bin/seclists
+				apt-get install seclists || wget -c https://github.com/danielmiessler/SecLists/archive/master.zip -O SecList.zip && unzip SecList.zip && rm -f SecList.zip && mv SecLists-master /usr/share/seclists
                 ;;
             linkfinder)
 				echo -e "${GREEN}${BOLD}[>] installing linkfinder...⏳"
