@@ -146,8 +146,8 @@ for tool in "${tools[@]}"; do
 				;;
 			x8)
 				echo -e "${YELLOW}${BOLD}[>] installing x8...⏳"
-				wget "https://github.com/Sh1Yo/x8/releases/download/v4.3.0/x86_64-linux-x8.gz" -O x8.gz && gunzip x8.gz && chmod +x * && rm x8.gz 
-				mv x8 /usr/bin
+				wget "https://github.com/Sh1Yo/x8/releases/download/v4.3.0/x86_64-linux-x8.gz" -O x8.gz && gunzip x8.gz && chmod +x * 
+				mv x8 /usr/bin && rm x8.gz
 				;;			
 			arjun)
 				echo -e "${YELLOW}${BOLD}[>] installing arjun...⏳"
