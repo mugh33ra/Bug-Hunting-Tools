@@ -87,7 +87,7 @@ for tool in "${tools[@]}"; do
             httpx-toolkit)
         		echo -e "${GREEN}${BOLD}[>] installing httpx...⏳"
 				wget "https://github.com/projectdiscovery/httpx/releases/download/v1.7.0/httpx_1.7.0_linux_amd64.zip" -O httpx.zip
-				unzip httpx.zip && chmod +x * && mv httpx /usr/local/bin/httpx-toolkit && rm httpx.zip
+				unzip httpx.zip httpx && chmod +x * && mv httpx /usr/local/bin/httpx-toolkit && rm httpx.zip
                 ;;
             dalfox)
             	echo -e "${YELLOW}${BOLD}[>] installing dalfox...⏳"
@@ -162,7 +162,6 @@ for tool in "${tools[@]}"; do
 				git clone https://github.com/r0oth3x49/ghauri.git
 				pip3 install -r ghauri/requirements.txt
 				python3 ghauri/setup.py install
-				rm -rf ghauri/
 				;;
 			gau)
 				echo -e "${GREEN}${BOLD}[>] installing gau...⏳"
