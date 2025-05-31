@@ -194,5 +194,7 @@ echo -e "${GREEN}${BOLD}[+] Ensuring Pipx path"
 rm -rf LICENSE.txt build dist ghauri.egg-info
 pipx ensurepath
 sleep 1
-echo -e "${YELLOW}${BOLD}[+] Done🎉"
+echo -e "${YELLOW}${BOLD}[+] Some tools is installed in '/opt/tools' and some in $HOME/go/bin🎉"
+echo -e "${YELLOW}${BOLD}[+] Tools that installed in $HOME/go/bin"
+tree $HOME/go/bin
 
