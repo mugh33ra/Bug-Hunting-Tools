@@ -191,6 +191,7 @@ done
 
 echo -e "${GREEN}${BOLD}[+] Configuring tools...."
 echo -e "${GREEN}${BOLD}[+] Ensuring Pipx path"
+rm -rf LICENSE.txt build dist ghauri.egg-info
 pipx ensurepath
 sleep 1
 echo -e "${YELLOW}${BOLD}[+] Done🎉"
