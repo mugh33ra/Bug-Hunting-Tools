@@ -196,5 +196,6 @@ pipx ensurepath
 sleep 1
 echo -e "${YELLOW}${BOLD}[+] Some tools is installed in '/opt/tools' and some in $HOME/go/bin🎉"
 echo -e "${YELLOW}${BOLD}[+] Tools that installed in $HOME/go/bin"
+apt install tree -y
 tree $HOME/go/bin
 
