@@ -87,16 +87,16 @@ for tool in "${tools[@]}"; do
             httpx-toolkit)
         		echo -e "${GREEN}${BOLD}[>] installing httpx...⏳"
 				wget "https://github.com/projectdiscovery/httpx/releases/download/v1.7.0/httpx_1.7.0_linux_amd64.zip" -O httpx.zip
-				unzip httpx.zip httpx && chmod +x * && mv httpx /usr/local/bin/httpx-toolkit && rm httpx.zip
+				unzip httpx.zip httpx && chmod +x * && cp httpx $HOME/go/bin/httpx-toolkit && mv httpx /usr/local/bin/httpx-toolkit && rm httpx.zip
                 ;;
             dalfox)
             	echo -e "${YELLOW}${BOLD}[>] installing dalfox...⏳"
-            	wget "https://github.com/hahwul/dalfox/releases/download/v2.11.0/dalfox_2.11.0_linux_amd64.tar.gz" -O dalfox.tar.gz && tar -xzf dalfox.tar.gz && chmod +x * && mv dalfox /usr/local/bin && rm dalfox.tar.gz
+            	wget "https://github.com/hahwul/dalfox/releases/download/v2.11.0/dalfox_2.11.0_linux_amd64.tar.gz" -O dalfox.tar.gz && tar -xzf dalfox.tar.gz && chmod +x * && cp dalfox $HOME/go/bin/ && mv dalfox /usr/local/bin && rm dalfox.tar.gz
                 ;;
             nuclei)
             	echo -e "${YELLOW}${BOLD}[>] installing nuclei...⏳"
             	wget "https://github.com/projectdiscovery/nuclei/releases/download/v3.4.4/nuclei_3.4.4_linux_amd64.zip" -O "nuclei.zip"
-            	unzip nuclei.zip nuclei && rm *.md && chmod +x * && mv nuclei /usr/bin && rm nuclei.zip
+            	unzip nuclei.zip nuclei && chmod +x * && cp nuclei $HOME/go/bin/ && mv nuclei /usr/bin && rm nuclei.zip
                 ;;
             gospider)
         		echo -e "${GREEN}${BOLD}[>] installing gospider...⏳"
@@ -146,7 +146,7 @@ for tool in "${tools[@]}"; do
 				;;
 			x8)
 				echo -e "${YELLOW}${BOLD}[>] installing x8...⏳"
-				wget "https://github.com/Sh1Yo/x8/releases/download/v4.3.0/x86_64-linux-x8.gz" -O x8.gz && gunzip x8.gz && chmod +x * 
+				wget "https://github.com/Sh1Yo/x8/releases/download/v4.3.0/x86_64-linux-x8.gz" -O x8.gz && gunzip x8.gz && chmod +x * && cp x8 $HOME/go/bin/
 				mv x8 /usr/bin && rm x8.gz
 				;;			
 			arjun)
