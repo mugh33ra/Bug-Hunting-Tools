@@ -41,7 +41,7 @@ update() {
 }
 update
 
-tools=("go" "pipx" "ffuf" "dirsearch" "subfinder" "httpx-toolkit" "dalfox" "gospider" "uro" "nuclei" "secretfinder" "seclists" "linkfinder" "xsstrike" "403-bypass" "anew" "x8" "arjun" "sqlmap" "ghauri" "gau" "subprober" "freq")
+tools=("go" "pipx" "ffuf" "dirsearch" "subfinder" "httpx-toolkit" "dalfox" "gospider" "uro" "nuclei" "secretfinder" "seclists" "linkfinder" "xsstrike" "403-bypass" "anew" "x8" "arjun" "sqlmap" "ghauri" "gau" "subprober" "freq" "tree")
 
 #clear the terminal
 clear
@@ -176,6 +176,10 @@ for tool in "${tools[@]}"; do
 				echo -e "${GREEN}${BOLD}[>] installing freq...⏳"
 				go install github.com/takshal/freq@latest && cp $HOME/go/bin/freq /usr/bin || echo "[!] Install freq manually"
 				;;
+			tree)
+				echo -e "${GREEN}${BOLD}[>] installing tree...⏳"
+				apt install tree -y
+				;;
 
             *)
                 echo -e "[!] No install method defined for $tool"
@@ -196,6 +200,5 @@ pipx ensurepath
 sleep 1
 echo -e "${YELLOW}${BOLD}[+] Some tools is installed in '/opt/tools' and some in $HOME/go/bin🎉"
 echo -e "${YELLOW}${BOLD}[+] Tools that installed in $HOME/go/bin"
-apt install tree -y
 tree $HOME/go/bin
 
