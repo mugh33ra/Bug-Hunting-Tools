@@ -171,6 +171,7 @@ for tool in "${tools[@]}"; do
 			subprober)
 				echo -e "${GREEN}${BOLD}[>] installing subprober...⏳"
 				pipx install git+https://github.com/RevoltSecurities/Subprober.git
+    				subprober -h || cp $HOME/.local/bin/subprober /usr/bin
 				;;
 			freq)
 				echo -e "${GREEN}${BOLD}[>] installing freq...⏳"
