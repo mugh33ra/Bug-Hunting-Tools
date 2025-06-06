@@ -41,7 +41,7 @@ update() {
 }
 update
 
-tools=("go" "pipx" "ffuf" "dirsearch" "subfinder" "httpx-toolkit" "dalfox" "gospider" "uro" "nuclei" "secretfinder" "seclists" "linkfinder" "xsstrike" "403-bypass" "anew" "x8" "arjun" "sqlmap" "ghauri" "gau" "subprober" "freq" "tree")
+tools=("go" "pipx" "ffuf" "dirsearch" "subfinder" "httpx-toolkit" "dalfox" "gospider" "uro" "nuclei" "secretfinder" "seclists" "linkfinder" "xsstrike" "403-bypass" "anew" "x8" "arjun" "sqlmap" "ghauri" "gau" "subprober" "freq" "tree" "getJS")
 
 #clear the terminal
 clear
@@ -180,6 +180,10 @@ for tool in "${tools[@]}"; do
 			tree)
 				echo -e "${GREEN}${BOLD}[>] installing tree...⏳"
 				apt install tree -y
+				;;
+			getJS)
+				echo -e "${GREEN}${BOLD}[>] installing getJS...⏳"
+				go install github.com/003random/getJS/v2@latest && cp $HOME/go/bin/getJS /usr/bin
 				;;
 
             *)
