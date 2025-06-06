@@ -4,7 +4,9 @@
 
 <p align="center">
   <img src="https://img.shields.io/github/stars/mugh33ra/Bug-Hunting-Tools?style=flat-square" />
+  <img src="https://img.shields.io/github/release/mugh33ra/Bug-Hunting-Tools?style=flat-square" />
   <img src="https://img.shields.io/github/forks/mugh33ra/Bug-Hunting-Tools?style=flat-square" />
+  <img src="https://img.shields.io/github/issues/mugh33ra/Bug-Hunting-Tools?style=flat-square" />
   <img src="https://img.shields.io/github/license/mugh33ra/Bug-Hunting-Tools?style=flat-square" />
 </p>
 
