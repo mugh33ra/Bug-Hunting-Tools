@@ -95,7 +95,7 @@ for tool in "${tools[@]}"; do
                 ;;
             nuclei)
             	echo -e "${YELLOW}${BOLD}[>] installing nuclei...⏳"
-            	wget "https://github.com/projectdiscovery/nuclei/releases/download/v3.4.4/nuclei_3.4.4_linux_amd64.zip" -O "nuclei.zip"
+            	wget "https://github.com/projectdiscovery/nuclei/releases/download/v3.4.7/nuclei_3.4.7_linux_amd64.zip" -O "nuclei.zip"
             	unzip nuclei.zip nuclei && chmod +x * && cp nuclei $HOME/go/bin/ && mv nuclei /usr/bin && rm nuclei.zip && nuclei -up
                 ;;
             gospider)
