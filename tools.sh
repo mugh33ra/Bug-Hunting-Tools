@@ -160,8 +160,10 @@ for tool in "${tools[@]}"; do
 			ghauri)
 				echo -e "${YELLOW}${BOLD}[>] installing ghauri...⏳"
 				git clone https://github.com/r0oth3x49/ghauri.git
-				pip3 install -r ghauri/requirements.txt
-				python3 ghauri/setup.py install
+				cd ghauri/
+				pip3 install -r requirements.txt --break-system-packages
+				python3 setup.py install
+				cd ..
 				;;
 			gau)
 				echo -e "${GREEN}${BOLD}[>] installing gau...⏳"
