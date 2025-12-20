@@ -41,7 +41,7 @@ update() {
 }
 update
 
-tools=("go" "pipx" "ffuf" "dirsearch" "subfinder" "httpx-toolkit" "dalfox" "gospider" "uro" "nuclei" "secretfinder" "seclists" "linkfinder" "xsstrike" "403-bypass" "anew" "x8" "arjun" "sqlmap" "ghauri" "gau" "subprober" "freq" "tree" "getJS")
+tools=("go" "pipx" "ffuf" "dirsearch" "subfinder" "httpx-toolkit" "dalfox" "gospider" "uro" "nuclei" "secretfinder" "seclists" "linkfinder" "xsstrike" "403-bypass" "anew" "x8" "arjun" "sqlmap" "ghauri" "gau" "subprober" "freq" "tree" "getJS" "gowitness")
 
 #clear the terminal
 clear
@@ -187,6 +187,10 @@ for tool in "${tools[@]}"; do
 				echo -e "${GREEN}${BOLD}[>] installing getJS...⏳"
 				go install github.com/003random/getJS/v2@latest && cp $HOME/go/bin/getJS /usr/bin
 				;;
+			gowitness)
+				echo -e "${GREEN}${BOLD}[>] installing gowitness...⏳"
+				go install github.com/sensepost/gowitness@latest
+				;;
 
             *)
                 echo -e "[!] No install method defined for $tool"
@@ -208,4 +212,14 @@ sleep 1
 echo -e "${YELLOW}${BOLD}[+] Some tools is installed in '/opt/tools' and some in $HOME/go/bin🎉"
 echo -e "${YELLOW}${BOLD}[+] Tools that installed in $HOME/go/bin"
 tree $HOME/go/bin
-
+if [[ $SHELL == "/bin/bash" ]]; then
+	if ! grep -q "export PATH=\$PATH:\$HOME/go/bin"; then
+		echo "export PATH=\$PATH:\$HOME/go/bin" >> /root/.bashrc
+		source /root/.bashrc
+	fi
+elif [[ $SHELL == "/bin/zsh" ]]; then
+	if ! grep -q "export PATH=\$PATH:\$HOME/go/bin"; then
+		echo "export PATH=\$PATH:\$HOME/go/bin" >> /root/.zshrc
+		source /root/.zshrc
+	fi
+fi
