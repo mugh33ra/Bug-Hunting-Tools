@@ -213,28 +213,25 @@ echo -e "${YELLOW}${BOLD}[+] Some tools is installed in '/opt/tools' and some in
 echo -e "${YELLOW}${BOLD}[+] Tools that installed in $HOME/go/bin"
 tree $HOME/go/bin
 
-# 1. Detect the current active shell name
-CURRENT_SHELL=$(ps -p $$ -o comm= | sed 's/-//g')
+# Detect the actual running shell name, not the default $SHELL variable
+ACTUAL_SHELL=$(ps -p $$ -o comm= | sed 's/-//g')
 GO_PATH_LINE='export PATH="$PATH:$HOME/go/bin"'
 
-case "$CURRENT_SHELL" in
-    bash)
-        CONF_FILE="$HOME/.bashrc"
-        ;;
-    zsh)
-        CONF_FILE="$HOME/.zshrc"
-        ;;
-    *)
-        echo "Detected shell: $CURRENT_SHELL. Please manually add to your config."
-        exit 1
-        ;;
-esac
+if [[ "$ACTUAL_SHELL" == "zsh" ]]; then
+    CONF_FILE="$HOME/.zshrc"
+elif [[ "$ACTUAL_SHELL" == "bash" ]]; then
+    CONF_FILE="$HOME/.bashrc"
+else
+    # Fallback if detection fails
+    CONF_FILE="$HOME/.zshrc"
+fi
 
+# Add the line if it's missing
 if ! grep -Fxq "$GO_PATH_LINE" "$CONF_FILE"; then
     echo "Updating $CONF_FILE..."
     echo "$GO_PATH_LINE" >> "$CONF_FILE"
     export PATH="$PATH:$HOME/go/bin"
-    echo "Success! Please run 'source $CONF_FILE' or restart your terminal."
+    echo "Done! Restart your terminal or run: source $CONF_FILE"
 else
     echo "Path already exists in $CONF_FILE"
 fi
