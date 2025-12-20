@@ -213,17 +213,28 @@ echo -e "${YELLOW}${BOLD}[+] Some tools is installed in '/opt/tools' and some in
 echo -e "${YELLOW}${BOLD}[+] Tools that installed in $HOME/go/bin"
 tree $HOME/go/bin
 
+# 1. Detect the current active shell name
+CURRENT_SHELL=$(ps -p $$ -o comm= | sed 's/-//g')
 GO_PATH_LINE='export PATH="$PATH:$HOME/go/bin"'
 
-case "$SHELL" in
-    */bash) CONF_FILE="$HOME/.bashrc" ;;
-    */zsh)  CONF_FILE="$HOME/.zshrc" ;;
-    *)      echo "Unknown shell"; exit 1 ;;
+case "$CURRENT_SHELL" in
+    bash)
+        CONF_FILE="$HOME/.bashrc"
+        ;;
+    zsh)
+        CONF_FILE="$HOME/.zshrc"
+        ;;
+    *)
+        echo "Detected shell: $CURRENT_SHELL. Please manually add to your config."
+        exit 1
+        ;;
 esac
 
-
 if ! grep -Fxq "$GO_PATH_LINE" "$CONF_FILE"; then
-    echo "Adding Go bin to PATH in $CONF_FILE"
+    echo "Updating $CONF_FILE..."
     echo "$GO_PATH_LINE" >> "$CONF_FILE"
     export PATH="$PATH:$HOME/go/bin"
+    echo "Success! Please run 'source $CONF_FILE' or restart your terminal."
+else
+    echo "Path already exists in $CONF_FILE"
 fi
