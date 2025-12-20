@@ -212,14 +212,18 @@ sleep 1
 echo -e "${YELLOW}${BOLD}[+] Some tools is installed in '/opt/tools' and some in $HOME/go/bin🎉"
 echo -e "${YELLOW}${BOLD}[+] Tools that installed in $HOME/go/bin"
 tree $HOME/go/bin
-if [[ $SHELL == "/bin/bash" ]]; then
-	if ! grep -q "export PATH=\$PATH:\$HOME/go/bin"; then
-		echo "export PATH=\$PATH:\$HOME/go/bin" >> /root/.bashrc
-		source /root/.bashrc
-	fi
-elif [[ $SHELL == "/bin/zsh" ]]; then
-	if ! grep -q "export PATH=\$PATH:\$HOME/go/bin"; then
-		echo "export PATH=\$PATH:\$HOME/go/bin" >> /root/.zshrc
-		source /root/.zshrc
-	fi
+
+GO_PATH_LINE='export PATH="$PATH:$HOME/go/bin"'
+
+case "$SHELL" in
+    */bash) CONF_FILE="$HOME/.bashrc" ;;
+    */zsh)  CONF_FILE="$HOME/.zshrc" ;;
+    *)      echo "Unknown shell"; exit 1 ;;
+esac
+
+
+if ! grep -Fxq "$GO_PATH_LINE" "$CONF_FILE"; then
+    echo "Adding Go bin to PATH in $CONF_FILE"
+    echo "$GO_PATH_LINE" >> "$CONF_FILE"
+    export PATH="$PATH:$HOME/go/bin"
 fi
