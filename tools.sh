@@ -226,12 +226,14 @@ else
     CONF_FILE="$HOME/.zshrc"
 fi
 
+echo 'export PATH="$PATH:$HOME/go/bin"' >> $HOME/.zshrc
+
 # Add the line if it's missing
-if ! grep -Fxq "$GO_PATH_LINE" "$CONF_FILE"; then
-    echo "Updating $CONF_FILE..."
-    echo "$GO_PATH_LINE" >> "$CONF_FILE"
-    export PATH="$PATH:$HOME/go/bin"
-    echo "Done! Restart your terminal or run: source $CONF_FILE"
-else
-    echo "Path already exists in $CONF_FILE"
-fi
+# if ! grep -Fxq "$GO_PATH_LINE" "$CONF_FILE"; then
+#     echo "Updating $CONF_FILE..."
+#     echo "$GO_PATH_LINE" >> "$CONF_FILE"
+#     export PATH="$PATH:$HOME/go/bin"
+#     echo "Done! Restart your terminal or run: source $CONF_FILE"
+# else
+#     echo "Path already exists in $CONF_FILE"
+# fi
