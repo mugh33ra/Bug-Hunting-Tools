@@ -227,6 +227,7 @@ else
 fi
 
 echo 'export PATH="$PATH:$HOME/go/bin"' >> $HOME/.zshrc
+source $HOME/.zshrc
 
 # Add the line if it's missing
 # if ! grep -Fxq "$GO_PATH_LINE" "$CONF_FILE"; then
