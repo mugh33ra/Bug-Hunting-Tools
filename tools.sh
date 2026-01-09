@@ -230,7 +230,7 @@ fi
 if ! grep -Fxq "$GO_PATH_LINE" "$HOME/.zshrc"; then
     echo "Updating "$HOME/.zshrc"..."
     echo "$GO_PATH_LINE" >> "$HOME/.zshrc"
-    export PATH="$PATH:$HOME/go/bin" && source "$HOME/.zshrc"
+    source "$HOME/.zshrc"
     #echo "Done! Restart your terminal or run: source $CONF_FILE"
 else
     echo "Path already exists in $CONF_FILE"
