@@ -227,11 +227,15 @@ else
 fi
 
 #Add the line if it's missing
-if ! grep -Fxq "$GO_PATH_LINE" "$HOME/.zshrc"; then
-    echo "Updating "$HOME/.zshrc"..."
-    echo "$GO_PATH_LINE" >> "$HOME/.zshrc"
-    source "$HOME/.zshrc"
-    #echo "Done! Restart your terminal or run: source $CONF_FILE"
+
+if [[ -f "$HOME/.zshrc" ]]; then
+	if ! grep -Fxq "$GO_PATH_LINE" "$HOME/.zshrc"; then
+    	echo "Updating "$HOME/.zshrc"..."
+    	echo "$GO_PATH_LINE" >> "$HOME/.zshrc"
+    	source "$HOME/.zshrc"
+    	#echo "Done! Restart your terminal or run: source $CONF_FILE"
+	else
+    	echo "Path already exists in $CONF_FILE"
+	fi
 else
-    echo "Path already exists in $CONF_FILE"
-fi
+	echo "$HOME/.zshrc is not found"
