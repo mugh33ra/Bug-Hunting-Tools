@@ -239,3 +239,4 @@ if [[ -f "$HOME/.zshrc" ]]; then
 	fi
 else
 	echo "$HOME/.zshrc is not found"
+fi
