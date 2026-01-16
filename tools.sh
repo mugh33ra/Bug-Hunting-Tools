@@ -217,25 +217,14 @@ tree $HOME/go/bin
 ACTUAL_SHELL=$(ps -p $$ -o comm= | sed 's/-//g')
 GO_PATH_LINE='export PATH="$PATH:$HOME/go/bin"'
 
-if [[ "$ACTUAL_SHELL" == "zsh" ]]; then
-    CONF_FILE="$HOME/.zshrc"
-elif [[ "$ACTUAL_SHELL" == "bash" ]]; then
-    CONF_FILE="$HOME/.bashrc"
-else
-    # Fallback if detection fails
-    CONF_FILE="$HOME/.zshrc"
-fi
-
-#Add the line if it's missing
 
 if [[ -f "$HOME/.zshrc" ]]; then
 	if ! grep -Fxq "$GO_PATH_LINE" "$HOME/.zshrc"; then
     	echo "Updating "$HOME/.zshrc"..."
     	echo "$GO_PATH_LINE" >> "$HOME/.zshrc"
     	source "$HOME/.zshrc"
-    	#echo "Done! Restart your terminal or run: source $CONF_FILE"
 	else
-    	echo "Path already exists in $CONF_FILE"
+    	echo "Path already exists in $HOME/.zshrc"
 	fi
 else
 	echo "$HOME/.zshrc is not found"
