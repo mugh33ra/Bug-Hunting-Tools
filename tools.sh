@@ -221,8 +221,7 @@ GO_PATH_LINE='export PATH="$PATH:$HOME/go/bin"'
 if [[ -f "$HOME/.zshrc" ]]; then
 	if ! grep -q "$GO_PATH_LINE" "$HOME/.zshrc"; then
     	echo "Updating "$HOME/.zshrc"..."
-    	echo "$GO_PATH_LINE" >> "$HOME/.zshrc" && \
-    	source "$HOME/.zshrc"
+    	echo "$GO_PATH_LINE" >> "$HOME/.zshrc"
 	else
     	echo "Path already exists in $HOME/.zshrc"
 	fi
